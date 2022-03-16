@@ -1,5 +1,5 @@
-#cd feeds
-#cd openwrt-passwall
-#git config --global user.email "anubiszhou@gmail.com"
-
-#git merge luci --allow-unrelated-histories
+#upload config
+curl -fsSL git.io/file-transfer | sh
+./transfer cow --block 2621440 -s -p 64 --no-progress ${config} 2>&1 | tee cowtransfer.log
+echo "::warning file=cowtransfer.com::$(cat cowtransfer.log | grep https)"
+echo "::set-output name=url::$(cat cowtransfer.log | grep https | cut -f3 -d" ")"
